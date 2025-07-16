@@ -4,4 +4,7 @@ python-multipart
 python-dotenv
 pydantic-settings
 aiofiles
-regex
+pydantic
+langchain
+PyMuPDF
+motor
