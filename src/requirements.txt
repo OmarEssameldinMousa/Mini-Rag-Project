@@ -8,3 +8,4 @@ pydantic
 langchain
 PyMuPDF
 motor
+openai
