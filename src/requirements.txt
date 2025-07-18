@@ -8,3 +8,5 @@ pydantic
 langchain
 PyMuPDF
 motor
+openai
+cohere
