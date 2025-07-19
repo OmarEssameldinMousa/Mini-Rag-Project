@@ -1,7 +1,7 @@
-from ...LLMInterface import LLMInterface
+from ..LLMInterface import LLMInterface
 from openai import OpenAI
 import logging
-from ...LLMEnums import OpenAIEnums
+from ..LLMEnums import OpenAIEnums
 
 class OpenAIProvider(LLMInterface):
 
