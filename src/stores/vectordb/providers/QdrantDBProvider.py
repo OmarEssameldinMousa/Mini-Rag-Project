@@ -25,7 +25,7 @@ class QdrantDB(VectorDBInterface):
         self.client = None 
 
     def is_collection_existed(self, collection_name: str) -> bool:
-        return self.client.collection_exists(collection_name=collection_name) is not None
+        return self.client.collection_exists(collection_name=collection_name)
     
     def list_all_collections(self):
         return self.client.get_collections()
@@ -43,15 +43,22 @@ class QdrantDB(VectorDBInterface):
             _ = self.delete_collection(collection_name=collection_name)
         
         if not self.is_collection_existed(collection_name):
-            self.client.create_collection(
-                collection_name=collection_name,
-                vectors_config=models.VectorParams(
-                    size=embedding_size,
-                    distance=self.distance_method
+            try:
+                self.client.create_collection(
+                    collection_name=collection_name,
+                    vectors_config=models.VectorParams(
+                        size=embedding_size,
+                        distance=self.distance_method
+                    )
                 )
-            )
+                self.logger.info(f"Successfully created collection: {collection_name}")
+                return True
+            except Exception as e:
+                self.logger.error(f"Failed to create collection {collection_name}: {e}")
+                return False
+        else:
+            self.logger.info(f"Collection {collection_name} already exists")
             return True
-        return False
     
     def insert_one(self, collection_name: str, text: str, vector: list, metadata: dict = None, record_id: str = None):
         if not self.is_collection_existed(collection_name):
@@ -77,6 +84,10 @@ class QdrantDB(VectorDBInterface):
         return True
     
     def insert_many(self, collection_name: str, texts: List[str], vectors: List[list], metadata: List[dict] = None, record_ids: List[str] = None, batch_size: int = 50):
+
+        if not self.is_collection_existed(collection_name):
+            self.logger.error(f"Collection {collection_name} does not exist.")
+            return False
 
         if metadata is None:
             metadata = [None] * len(texts)
