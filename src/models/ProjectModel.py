@@ -7,7 +7,6 @@ class ProjectModel(BaseDataModel):
         super().__init__(db_client)
         self.collection_name = DataBaseEnum.COLLECTION_PROJECT_NAME.value
         self.collection = self.db_client[self.collection_name]
-        self.init_collection()
 
     @classmethod
     async def create_instance(cls, db_client: object):
