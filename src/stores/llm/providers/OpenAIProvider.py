@@ -22,7 +22,12 @@ class OpenAIProvider(LLMInterface):
         self.embedding_model_id = None
         self.embedding_size = None
 
-        self.client = OpenAI(api_key=self.api_key, base_url=self.api_url)
+        self.client = OpenAI(
+            api_key=self.api_key, 
+            base_url=self.api_url if self.api_url and len(self.api_url) else None
+        )
+
+        self.enums = OpenAIEnums
 
         self.logger = logging.getLogger(__name__)
 
@@ -31,17 +36,13 @@ class OpenAIProvider(LLMInterface):
         """Set the generation model to be used."""
         self.generation_model_id = model_id
 
-
-
     def set_embedding_model(self, model_id: str, embedding_size: int):
         """Set the embedding model to be used."""
         self.embedding_model_id = model_id 
         self.embedding_size = embedding_size
 
-
     def process_text(self, text: str):
         return text[:self.default_input_max_characters].strip()
-
 
     def generate_text(self, prompt: str, max_output_tokens: int = None, temperature: float = None , chat_history: list = []) -> str:
        
@@ -73,9 +74,6 @@ class OpenAIProvider(LLMInterface):
             return None
 
         return response.choices[0].message.content
-
-
-
 
     def embed_text(self, text: str, document_type: str = None):
 
