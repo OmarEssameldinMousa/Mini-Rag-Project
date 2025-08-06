@@ -11,3 +11,4 @@ motor
 openai
 cohere
 qdrant-client
+google-genai
