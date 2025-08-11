@@ -92,6 +92,10 @@ class CohereProvider(LLMInterface):
 
 
     def construct_prompt(self, prompt, role):
-        return {"role": role, "text": prompt}
+        return {
+            "role": role, 
+            "text": prompt
+        }
+    
     
 
