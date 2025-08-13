@@ -13,5 +13,7 @@ cohere
 qdrant-client
 SQLAlchemy
 asyncpg
-alembic
+alembicf
 psycopg2
+pgvector
+nltk
