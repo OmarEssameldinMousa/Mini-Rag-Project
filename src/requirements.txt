@@ -11,4 +11,9 @@ motor
 openai
 cohere
 qdrant-client
-google-genai
+SQLAlchemy
+asyncpg
+alembicf
+psycopg2
+pgvector
+nltk
