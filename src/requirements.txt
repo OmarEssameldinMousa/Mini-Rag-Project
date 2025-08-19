@@ -6,6 +6,7 @@ pydantic-settings
 aiofiles
 pydantic
 langchain
+langchain-community
 PyMuPDF
 motor
 openai
@@ -13,7 +14,10 @@ cohere
 qdrant-client
 SQLAlchemy
 asyncpg
-alembicf
+alembic
 psycopg2
 pgvector
 nltk
+prometheus-client
+starlette-exporter
+fastapi-health
