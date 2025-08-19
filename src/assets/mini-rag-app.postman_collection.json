@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "bea7e44f-4561-4e0e-815c-287b874a43a9",
 		"name": "mini-rag-app",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "44291153"
 	},
 	"item": [
@@ -10,7 +10,108 @@
 			"name": "welcome-request",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "{{api}}/api/v1/"
+			},
+			"response": []
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/omar/Downloads/innovation.txt"
+						}
+					]
+				},
+				"url": "{{api}}/api/v1/data/upload/1"
+			},
+			"response": []
+		},
+		{
+			"name": "process",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    // \"file_id\": \"LzqpadcLEMss_text.txt\",\n    \"chunk_size\": 100,\n    \"overlap_size\": 5,\n    \"do_reset\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api}}/api/v1/data/process/1"
+			},
+			"response": []
+		},
+		{
+			"name": "nlp_index_search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"when tommas edison was born?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api}}/api/v1/nlp/index/search/1"
+			},
+			"response": []
+		},
+		{
+			"name": "nlp_index_push",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"do_reset\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api}}/api/v1/nlp/index/push/1"
+			},
+			"response": []
+		},
+		{
+			"name": "nlp_index_info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{api}}/api/v1/nlp/index/info/1"
+			},
+			"response": []
+		},
+		{
+			"name": "nlp_rag_answer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"When Thomas Alva Edison was born?\",\n    \"limit\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api}}/api/v1/nlp/index/answer/1"
 			},
 			"response": []
 		}
