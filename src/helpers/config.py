@@ -47,6 +47,14 @@ class Settings(BaseSettings):
     PRIMARY_LANG: str = "en"
     DEFAULT_LANG: str = "en"
 
+    # celery configuration
+    CELERY_BROKER_URL: str = None
+    CELERY_RESULT_BACKEND: str = None
+    CELERY_TASK_SERIALIZER: str = None
+    CELERY_TASK_TIME_LIMIT: int = None
+    CELERY_TASK_ACKS_LATE: bool = None
+    CELERY_WORKER_CONCURRENCY: int = None
+
     class Config:
         env_file = ".env"
         
