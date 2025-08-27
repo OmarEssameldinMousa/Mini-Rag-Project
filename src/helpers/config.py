@@ -55,6 +55,7 @@ class Settings(BaseSettings):
     CELERY_TASK_ACKS_LATE: bool = None
     CELERY_WORKER_CONCURRENCY: int = None
     CELERY_FLOWER_PASSWORD: str = None
+    CELERY_TIMEZONE: str = None
 
     class Config:
         env_file = ".env"

@@ -57,7 +57,8 @@ celery_app = Celery(
     include=[
         "tasks.file_processing",
         "tasks.data_indexing",
-        "tasks.process_workflow"
+        "tasks.process_workflow",
+        "tasks.maintenance"
     ]
 )
 
@@ -80,9 +81,18 @@ celery_app.conf.update(
     task_routes = {
         "tasks.file_processing.process_project_files": {"queue": "file_processing"},
         "tasks.data_indexing.index_data_content": {"queue": "data_indexing"},
-        "tasks.process_workflow.process_and_push_workflow": {"queue": "file_processing"}
-    }
+        "tasks.process_workflow.process_and_push_workflow": {"queue": "file_processing"},
+        "tasks.maintenance.clean_celery_executions_table": {"queue": "default"}
+    },
 
+    beat_schedule = {
+        'clean-old-task-records': {
+            'task': 'tasks.maintenance.clean_celery_executions_table',
+            'schedule': 10,
+        }
+    },
+
+    timezone = settings.CELERY_TIMEZONE
 
 )
 
