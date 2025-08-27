@@ -144,7 +144,9 @@ async def _process_project_files(task_instance, project_id,file_id, chunk_size,o
         return {
             "signal": ResponseSignal.PROCESSING_SUCCESS.value,
             "inserted_chunks": no_records,
-            "processed_files": no_files
+            "processed_files": no_files,
+            "project_id": project_id,
+            "do_reset": do_reset
         }
     except Exception as e:
         logger.error(f"Task failed: {e}")
