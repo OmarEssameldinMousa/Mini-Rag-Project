@@ -15,9 +15,16 @@ qdrant-client
 SQLAlchemy
 asyncpg
 alembic
-psycopg2
+psycopg2-binary
 pgvector
 nltk
 prometheus-client
 starlette-exporter
 fastapi-health
+
+celery
+redis
+kombu
+billiard
+vine
+flower
