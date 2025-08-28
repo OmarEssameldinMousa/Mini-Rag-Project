@@ -211,17 +211,6 @@ Visit http://localhost:8000/docs for Swagger UI documentation
 
 ## 🔧 Configuration
 
-### Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `POSTGRES_HOST` | PostgreSQL host | `pgvector` |
-| `POSTGRES_PORT` | PostgreSQL port | `5432` |
-| `VECTOR_DB_BACKEND` | Vector DB (`PGVECTOR`/`QDRANT`) | `PGVECTOR` |
-| `EMBEDDING_BACKEND` | Embedding provider | `COHERE` |
-| `GENERATION_BACKEND` | LLM provider | `OPENAI` |
-| `CELERY_WORKER_CONCURRENCY` | Worker threads | `2` |
-
 ### Supported File Types
 - **PDF**: `.pdf`
 - **Text**: `.txt`
@@ -230,24 +219,6 @@ Visit http://localhost:8000/docs for Swagger UI documentation
 ### Vector Databases
 - **PostgreSQL + pgvector**: Default, integrated with main database
 - **Qdrant**: Dedicated vector database, better for large-scale deployments
-
-## 🏢 Production Deployment
-
-### Docker Swarm
-```bash
-# Convert to Docker Swarm stack
-docker stack deploy -c docker-compose.yml minirag
-```
-
-### Kubernetes
-- Convert Docker Compose to Kubernetes manifests
-- Use ConfigMaps for environment variables
-- Set up persistent volumes for data
-
-### Environment-Specific Configurations
-- **Development**: Local setup with hot reload
-- **Staging**: Docker Compose with external databases
-- **Production**: Kubernetes with managed services
 
 ## 🛠️ Development
 
@@ -269,49 +240,3 @@ Mini-Rag-Project/
 │   └── env/                      # Environment files
 └── README.md
 ```
-
-### Adding New Features
-1. **New API Endpoints**: Add to `src/routes/`
-2. **Background Tasks**: Add to `src/tasks/`
-3. **Database Changes**: Create Alembic migrations
-4. **LLM Providers**: Extend `src/stores/llm/providers/`
-
-### Running Tests
-```bash
-cd src
-python -m pytest tests/
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Omar Essameldin Mousa** - [@OmarEssameldinMousa](https://github.com/OmarEssameldinMousa)
-
-## 🙏 Acknowledgments
-
-- [FastAPI](https://fastapi.tiangolo.com/) for the excellent web framework
-- [Celery](https://docs.celeryproject.org/) for distributed task processing
-- [PostgreSQL](https://www.postgresql.org/) and [pgvector](https://github.com/pgvector/pgvector) for vector operations
-- [Qdrant](https://qdrant.tech/) for vector database capabilities
-- [Cohere](https://cohere.ai/) and [OpenAI](https://openai.com/) for AI services
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/OmarEssameldinMousa/Mini-Rag-Project/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/OmarEssameldinMousa/Mini-Rag-Project/discussions)
-
----
-
-⭐ If you find this project helpful, please give it a star on GitHub!
-
